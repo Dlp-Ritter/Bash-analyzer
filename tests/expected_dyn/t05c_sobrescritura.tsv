@@ -1,0 +1,3 @@
+SOURCE	tests/positivos/t05c_sobrescritura.sh	3	POSITIONAL	$1	a	$1 -> a
+PROP	tests/positivos/t05c_sobrescritura.sh	4	ASSIGN	a	b	$1 -> a -> b
+UNTAINT	tests/positivos/t05c_sobrescritura.sh	5	OVERWRITE	b	-	$1 -> a -> b

@@ -1,0 +1,7 @@
+SOURCE	tests/positivos/t05e_bucle_ramas.sh	4	POSITIONAL	$@	item	$@ -> item
+USE	tests/positivos/t05e_bucle_ramas.sh	5	ejecutar	item	-	$@ -> item -> ejecutar
+PROP	tests/positivos/t05e_bucle_ramas.sh	5	ARGPARAM	item	ejecutar:$1	$@ -> item -> ejecutar:$1
+SOURCE	tests/positivos/t05e_bucle_ramas.sh	7	POSITIONAL	$1	-	$1
+SOURCE	tests/positivos/t05e_bucle_ramas.sh	8	POSITIONAL	$1	r	$1 -> r
+USE	tests/positivos/t05e_bucle_ramas.sh	12	ejecutar	r	-	$1 -> r -> ejecutar
+PROP	tests/positivos/t05e_bucle_ramas.sh	12	ARGPARAM	r	ejecutar:$1	$1 -> r -> ejecutar:$1

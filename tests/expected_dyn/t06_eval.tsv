@@ -1,0 +1,4 @@
+SOURCE	tests/positivos/t06_eval.sh	3	POSITIONAL	$1	entrada	$1 -> entrada
+PROP	tests/positivos/t06_eval.sh	4	ASSIGN	entrada	comando	$1 -> entrada -> comando
+USE	tests/positivos/t06_eval.sh	5	eval	comando	-	$1 -> entrada -> comando -> eval
+ALERT	tests/positivos/t06_eval.sh	5	EVAL	comando	eval	$1 -> entrada -> comando -> eval

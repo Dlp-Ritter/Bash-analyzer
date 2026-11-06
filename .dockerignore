@@ -1,0 +1,6 @@
+.git
+*.log
+*.aux
+*.out
+*.pdf
+salida*.json

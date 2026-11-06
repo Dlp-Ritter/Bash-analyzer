@@ -1,0 +1,3 @@
+ALERT	tests/negativos/n02_comillas_constantes.sh	4	UNQUOTED/CONST	dir	ls	dir -> ls
+SOURCE	tests/negativos/n02_comillas_constantes.sh	5	POSITIONAL	$1	-	$1
+USE	tests/negativos/n02_comillas_constantes.sh	5	ls	$1	-	$1 -> ls

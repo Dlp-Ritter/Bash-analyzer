@@ -1,0 +1,4 @@
+UNRESOLVED	tests/recursivo/r05_ruta_inexistente.sh	4	source	./tests/recursivo/no_existe.sh	-	-
+SOURCE	tests/recursivo/r05_ruta_inexistente.sh	6	POSITIONAL	$1	-	$1
+USE	tests/recursivo/r05_ruta_inexistente.sh	6	eval	$1	-	$1 -> eval
+ALERT	tests/recursivo/r05_ruta_inexistente.sh	6	EVAL	$1	eval	$1 -> eval

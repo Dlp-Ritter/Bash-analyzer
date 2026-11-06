@@ -1,0 +1,7 @@
+SOURCE	tests/positivos/t10e_envoltorio_shell.sh	4	POSITIONAL	$1	-	$1
+USE	tests/positivos/t10e_envoltorio_shell.sh	4	sudo	$1	-	$1 -> sudo
+ALERT	tests/positivos/t10e_envoltorio_shell.sh	4	SUBSHELL	$1	sudo	$1 -> sudo
+PROP	tests/positivos/t10e_envoltorio_shell.sh	4	ARGPARAM	$1	sudo:$3	$1 -> sudo:$3
+SOURCE	tests/positivos/t10e_envoltorio_shell.sh	5	POSITIONAL	$1	-	$1
+USE	tests/positivos/t10e_envoltorio_shell.sh	5	env	$1	-	$1 -> env
+ALERT	tests/positivos/t10e_envoltorio_shell.sh	5	SUBSHELL	$1	env	$1 -> env

@@ -1,0 +1,4 @@
+SOURCE	tests/positivos/t12d_case_cuerpo_en_rama.sh	3	POSITIONAL	$1	-	$1
+SOURCE	tests/positivos/t12d_case_cuerpo_en_rama.sh	5	POSITIONAL	$1	-	$1
+USE	tests/positivos/t12d_case_cuerpo_en_rama.sh	5	eval	$1	-	$1 -> eval
+ALERT	tests/positivos/t12d_case_cuerpo_en_rama.sh	5	EVAL/SAN	$1	eval	$1 -> eval

@@ -1,0 +1,4 @@
+SOURCE	tests/positivos/t11c_regex_laxa.sh	3	POSITIONAL	$1	-	$1
+SOURCE	tests/positivos/t11c_regex_laxa.sh	4	POSITIONAL	$1	-	$1
+USE	tests/positivos/t11c_regex_laxa.sh	4	eval	$1	-	$1 -> eval
+ALERT	tests/positivos/t11c_regex_laxa.sh	4	EVAL	$1	eval	$1 -> eval

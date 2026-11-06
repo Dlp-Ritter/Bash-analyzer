@@ -1,0 +1,9 @@
+dist/
+logs/*.log
+*.aux
+*.log
+*.out
+*.pdf
+*.tex
+*.pptx
+*.env

@@ -1,0 +1,3 @@
+SOURCE	tests/positivos/t10b_comando_directo.sh	3	POSITIONAL	$1	cmd	$1 -> cmd
+USE	tests/positivos/t10b_comando_directo.sh	4	$cmd	cmd	-	$1 -> cmd -> $cmd
+ALERT	tests/positivos/t10b_comando_directo.sh	4	EXECCMD	cmd	$cmd	$1 -> cmd -> $cmd

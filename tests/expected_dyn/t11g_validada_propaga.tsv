@@ -1,0 +1,4 @@
+SOURCE	tests/positivos/t11g_validada_propaga.sh	3	POSITIONAL	$1	-	$1
+SOURCE	tests/positivos/t11g_validada_propaga.sh	4	POSITIONAL	$1	x	$1 -> x
+USE	tests/positivos/t11g_validada_propaga.sh	5	eval	x	-	$1 -> x -> eval
+ALERT	tests/positivos/t11g_validada_propaga.sh	5	EVAL/SAN	x	eval	$1 -> x -> eval

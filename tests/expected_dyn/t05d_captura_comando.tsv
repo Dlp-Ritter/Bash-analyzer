@@ -1,0 +1,7 @@
+SOURCE	tests/positivos/t05d_captura_comando.sh	3	POSITIONAL	$1	archivo	$1 -> archivo
+PROP	tests/positivos/t05d_captura_comando.sh	4	CMDSUB	archivo	contenido	$1 -> archivo -> contenido
+SOURCE	tests/positivos/t05d_captura_comando.sh	4	FILE	cat $archivo	contenido	cat $archivo -> contenido
+USE	tests/positivos/t05d_captura_comando.sh	4	cat	archivo	-	$1 -> archivo -> cat
+PROP	tests/positivos/t05d_captura_comando.sh	5	INTERP	contenido	resultado	$1 -> archivo -> contenido -> resultado
+USE	tests/positivos/t05d_captura_comando.sh	7	ejecutar	resultado	-	$1 -> archivo -> contenido -> resultado -> ejecutar
+PROP	tests/positivos/t05d_captura_comando.sh	7	ARGPARAM	resultado	ejecutar:$1	$1 -> archivo -> contenido -> resultado -> ejecutar:$1

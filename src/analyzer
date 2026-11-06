@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# analyzer - punto de entrada de desarrollo (carga los modulos de src/lib).
+# La version distribuible (un solo archivo) se genera con ./build.sh.
+# Requiere Bash 4.4 o superior / Requires Bash 4.4 or newer.
+if ((BASH_VERSINFO[0] < 4 || (BASH_VERSINFO[0] == 4 && BASH_VERSINFO[1] < 4))); then
+  printf 'analyzer: se requiere Bash 4.4 o superior (version actual: %s) / Bash 4.4+ required.\n' "$BASH_VERSION" >&2
+  exit 2
+fi
+ANALYZER_ROOT=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+for _lib in i18n rules log parser sources propagation monitor report cli; do
+  # shellcheck source=/dev/null
+  source "$ANALYZER_ROOT/lib/$_lib.sh"
+done
+analyzer_main "$@"

@@ -1,0 +1,2 @@
+tests/positivos/t04_comando_constante.sh	2	COMMAND	$(date)	fecha	TAINTED
+tests/positivos/t04_comando_constante.sh	4	COMMAND	`uname -r`	viejo	TAINTED

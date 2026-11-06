@@ -1,0 +1,3 @@
+tests/positivos/t01b_posicional_variantes.sh	2	POSITIONAL	$@	todos	TAINTED
+tests/positivos/t01b_posicional_variantes.sh	3	POSITIONAL	${2:-defecto}	valor	TAINTED
+tests/positivos/t01b_posicional_variantes.sh	4	POSITIONAL	$@	arg	TAINTED

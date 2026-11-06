@@ -1,0 +1,11 @@
+SOURCE	tests/positivos/t10c_sudo_exec_xargs.sh	4	POSITIONAL	$1	-	$1
+USE	tests/positivos/t10c_sudo_exec_xargs.sh	4	sudo	$1	-	$1 -> sudo
+ALERT	tests/positivos/t10c_sudo_exec_xargs.sh	4	EXECCMD	$1	sudo "$1"	$1 -> sudo "$1"
+PROP	tests/positivos/t10c_sudo_exec_xargs.sh	4	ARGPARAM	$1	sudo:$1	$1 -> sudo:$1
+SOURCE	tests/positivos/t10c_sudo_exec_xargs.sh	5	POSITIONAL	$1	-	$1
+SOURCE	tests/positivos/t10c_sudo_exec_xargs.sh	5	FILE	< /dev/null	-	< /dev/null
+USE	tests/positivos/t10c_sudo_exec_xargs.sh	5	xargs	$1	-	$1 -> xargs
+ALERT	tests/positivos/t10c_sudo_exec_xargs.sh	5	EXECCMD	$1	xargs "$1"	$1 -> xargs "$1"
+SOURCE	tests/positivos/t10c_sudo_exec_xargs.sh	6	POSITIONAL	$1	-	$1
+USE	tests/positivos/t10c_sudo_exec_xargs.sh	6	exec	$1	-	$1 -> exec
+ALERT	tests/positivos/t10c_sudo_exec_xargs.sh	6	EXECCMD	$1	exec "$1"	$1 -> exec "$1"

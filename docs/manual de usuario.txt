@@ -1,0 +1,259 @@
+MANUAL DE USUARIO
+ANALIZADOR DE INYECCIÓN DE COMANDOS EN BASH
+
+Versión de la herramienta: 1.0.0
+
+1. DESCRIPCIÓN
+
+El Analizador de Inyección de Comandos en Bash es una herramienta CLI local para Linux y Bash. Combina un análisis estático heurístico con un análisis dinámico basado en rastreo de datos contaminados (taint tracking).
+
+El análisis estático identifica fuentes y puntos sensibles potenciales sin ejecutar el script. El análisis dinámico ejecuta el script bajo monitoreo y confirma los flujos que se observan durante la ejecución.
+
+La herramienta es complementaria a ShellCheck: ShellCheck revisa sintaxis, estilo y advertencias generales de Bash; este analizador se enfoca en el recorrido de datos externos hacia operaciones sensibles.
+
+2. REQUISITOS Y SEGURIDAD
+
+Requisitos declarados:
+  - Linux.
+  - Bash 4.4 o superior.
+  - Comandos básicos del sistema: cat, cmp, date, env, mkdir, mktemp,
+    rm, sed y tr.
+  - No requiere conexión a Internet ni envía telemetría.
+
+ADVERTENCIA IMPORTANTE:
+El modo dinámico EJECUTA el script analizado con los privilegios actuales del usuario. No es un sandbox. Analice únicamente scripts confiables o utilice una VM o contenedor aislado, preferiblemente sin red y sin privilegios adicionales.
+
+Para inspeccionar un script sin ejecutarlo, use siempre:
+
+  analyzer --static script.sh
+
+3. INSTALACIÓN
+
+Desde el repositorio:
+
+  ./install.sh
+  analyzer --version
+
+También puede seleccionar un prefijo:
+
+  ./install.sh --prefix=/opt/analyzer
+
+Para desinstalar:
+
+  ./install.sh --uninstall
+
+Durante el desarrollo puede ejecutarse src/analyzer directamente. Para generar el ejecutable autónomo:
+
+  ./build.sh
+  ./dist/analyzer --version
+
+4. AYUDA DE LA CLI
+
+Ayuda rápida:
+
+  analyzer --help
+  analyzer -h
+
+Este manual completo:
+
+  analyzer --manual
+
+La versión de texto del manual está incorporada en el ejecutable distribuible, por lo que --manual también funciona después de instalar analyzer y no depende del repositorio original.
+
+5. SINTAXIS Y OPCIONES
+
+Sintaxis general:
+
+  analyzer [opciones] <script.sh> [argumentos del script...]
+
+Opciones principales:
+
+  -h, --help
+      Muestra la ayuda rápida.
+
+      --manual
+      Muestra este manual completo en la terminal.
+
+  -V, --version
+      Muestra la versión.
+
+      --lang=es|en
+      Selecciona el idioma de la interfaz. Por defecto: es.
+
+      --static
+      Ejecuta únicamente el análisis estático heurístico. No ejecuta el
+      script analizado.
+
+      --mode=strict|conservative
+      Selecciona la rigurosidad. strict reporta todos los hallazgos
+      aplicables; conservative omite los flujos considerados saneados o
+      validados. Por defecto: strict.
+
+  -r, --recursive
+      Analiza scripts secundarios invocados mediante source, ., o bash
+      otro_script.sh. Aplica al modo dinámico.
+
+  -v, --verbose
+      Muestra la ruta completa de propagación, incluyendo las etapas
+      intermedias.
+
+      --export=json <archivo>
+      Exporta el resultado dinámico a un archivo JSON.
+
+      --format=text|tsv
+      Selecciona el formato de salida de las etapas soportadas. Por defecto:
+      text.
+
+      --yes, --allow-execution
+      Confirma explícitamente la ejecución dinámica. Es necesario en
+      automatizaciones sin terminal interactiva.
+
+  -q, --quiet
+      Oculta avisos informativos.
+
+      --no-script-output
+      Descarta la salida producida por el script analizado.
+
+El primer argumento que no sea una opción se considera el script. Los argumentos restantes se entregan al script sin modificarlos.
+
+6. EJEMPLOS
+
+Análisis dinámico interactivo:
+
+  analyzer script.sh valor_de_prueba
+
+El programa solicita confirmación antes de ejecutar el script. En español se acepta s, S, y o Y; también se acepta yes.
+
+Análisis estático sin ejecución:
+
+  analyzer --static script.sh
+
+Análisis dinámico explícito en un entorno aislado:
+
+  analyzer --yes --no-script-output script.sh valor_de_prueba
+
+Modo conservative:
+
+  analyzer --mode=conservative script.sh valor_de_prueba
+
+Análisis de scripts secundarios:
+
+  analyzer --recursive script_principal.sh argumento
+
+Mostrar la ruta del dato contaminado:
+
+  analyzer --verbose script.sh argumento
+
+Exportar hallazgos a JSON:
+
+  analyzer --export=json resultado.json script.sh argumento
+
+Leer el manual con desplazamiento:
+
+  analyzer --manual | less
+
+7. INTERPRETACIÓN DE LOS RESULTADOS
+
+El modo estático muestra fuentes externas y, cuando corresponde, indicadores de sinks potenciales. Estos indicadores son heurísticos y tienen confianza media; la confirmación del flujo fuente-sink requiere el modo dinámico.
+
+El modo dinámico muestra alertas observadas durante la ejecución. Cada alerta puede incluir archivo, línea, severidad, origen, fuente, punto sensible, CWE, explicación y recomendación.
+
+Fuentes reconocidas incluyen:
+  - Argumentos posicionales: $1, $2, etc.
+  - Variables de entorno.
+  - stdin y read.
+  - Archivos y resultados de comandos, según el caso analizado.
+
+Puntos sensibles reconocidos incluyen:
+  - eval.
+  - bash -c, sh -c y subprocesos equivalentes.
+  - source y . con rutas controladas por datos externos.
+  - Comandos elegidos dinámicamente mediante variables.
+  - sudo, exec, xargs y env en flujos sensibles.
+  - Comandos remotos mediante ssh.
+  - Expansiones de variables sin comillas.
+
+Severidades habituales:
+  CRÍTICA     Inyección de comandos o ejecución de código potencial.
+  ALTA        Variable contaminada sin comillas en una operación sensible.
+  MEDIA       Dato saneado o validado que llega a un punto sensible en
+              modo strict.
+  INFORMATIVA Patrón potencial sin dato externo asociado.
+
+Referencias CWE utilizadas:
+  CWE-78  Improper Control of Generation of Code ('Code Injection').
+  CWE-88  Argument Injection o problemas por expansión no entrecomillada.
+  CWE-94  Improper Control of Generation of Code en carga de archivos.
+  CWE-20  Validación de entrada insuficiente o contexto de validación.
+
+8. IGNORE-RULE
+
+Puede suprimirse una alerta de una línea con una directiva:
+
+  # ignore-rule
+  eval "$comando_validado"
+
+También puede especificarse un tipo concreto:
+
+  eval "$x"   # ignore-rule:EVAL
+
+Los identificadores disponibles incluyen EVAL, SUBSHELL, EXECCMD, SOURCEFILE, SSHCMD, UNQUOTED, SANITIZED, LOWRISK y CONSTANT. El reporte indica cuántas líneas fueron excluidas.
+
+Las directivas deben utilizarse únicamente cuando el flujo haya sido revisado y exista una justificación de seguridad.
+
+9. CÓDIGOS DE SALIDA
+
+  0  Análisis terminado sin alertas críticas, o modo conservative.
+  1  El modo strict encontró al menos una alerta crítica.
+  2  Error de uso, archivo inexistente, archivo no legible o dependencia ausente.
+
+10. INTEGRACIÓN CI/CD
+
+En una automatización sin terminal se debe confirmar explícitamente la ejecución o utilizar análisis estático:
+
+  analyzer --yes --quiet --no-script-output script.sh argumento
+
+Para una validación que no ejecute el script:
+
+  analyzer --static script.sh
+
+Para consumir resultados estructurados:
+
+  analyzer --yes --no-script-output \
+    --export=json resultado.json script.sh argumento
+
+El código de salida puede utilizarse para detener un pipeline cuando el modo strict encuentra alertas críticas.
+
+11. LIMITACIONES CONOCIDAS
+
+  - El análisis estático utiliza heurísticas léxicas y puede producir
+    indicadores potenciales o falsos positivos.
+  - El análisis dinámico solo observa los comandos que realmente se
+    ejecutan; una rama no recorrida no genera eventos.
+  - La instrumentación mediante trap DEBUG introduce sobrecarga, que puede
+    aumentar considerablemente en bucles y scripts con muchos comandos.
+  - Si el script modifica o desactiva trap DEBUG, la cobertura dinámica puede
+    ser parcial. El analizador emite un aviso cuando detecta este patrón.
+  - El modo dinámico no sustituye un sandbox ni elimina los efectos laterales
+    del script.
+  - La validación final de esta versión se realizó en Linux con Bash 5.2.
+  - La compatibilidad declarada es Bash 4.4 o superior; otros entornos no
+    forman parte de la validación final.
+  - ShellCheck sigue siendo recomendable como herramienta complementaria.
+
+12. PRUEBAS Y AISLAMIENTO
+
+Las pruebas dinámicas deben ejecutarse únicamente en el laboratorio aislado del proyecto. La configuración recomendada usa Docker sin red, sin capacidades adicionales y con no-new-privileges:
+
+  docker run -it --rm --network none --cap-drop ALL \
+    --security-opt no-new-privileges bash-analyzer-lab
+
+Dentro del laboratorio:
+
+  ./tests/run_tests.sh
+  ./tests/verificacion.sh
+  ANALYZER=dist/analyzer ./tests/run_tests.sh
+
+No utilice scripts no confiables ni payloads contra sistemas de terceros.
+
+FIN DEL MANUAL

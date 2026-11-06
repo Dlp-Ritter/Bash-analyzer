@@ -1,0 +1,3 @@
+tests/positivos/t03b_redireccion.sh	2	FILE	< config.txt	primera	TAINTED
+tests/positivos/t03b_redireccion.sh	3	STDIN	mapfile	lineas	TAINTED
+tests/positivos/t03b_redireccion.sh	4	FILE	< entrada.txt	datos	TAINTED

@@ -1,0 +1,4 @@
+SOURCE	tests/positivos/t05_propagacion.sh	3	POSITIONAL	$1	a	$1 -> a
+PROP	tests/positivos/t05_propagacion.sh	4	INTERP	a	b	$1 -> a -> b
+PROP	tests/positivos/t05_propagacion.sh	5	ASSIGN	b	c	$1 -> a -> b -> c
+USE	tests/positivos/t05_propagacion.sh	6	procesar	c	-	$1 -> a -> b -> c -> procesar

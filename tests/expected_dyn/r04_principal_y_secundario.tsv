@@ -1,0 +1,8 @@
+SOURCE	tests/recursivo/r04_principal_y_secundario.sh	4	POSITIONAL	$1	-	$1
+USE	tests/recursivo/r04_principal_y_secundario.sh	4	eval	$1	-	$1 -> eval
+ALERT	tests/recursivo/r04_principal_y_secundario.sh	4	EVAL	$1	eval	$1 -> eval
+SOURCE	tests/recursivo/r04_principal_y_secundario.sh	5	POSITIONAL	$1	-	$1
+USE	tests/recursivo/r04_principal_y_secundario.sh	5	source	$1	-	$1 -> source
+SOURCE	./tests/recursivo/sec_eval.sh	2	POSITIONAL	$1	dato	$1 -> dato
+USE	./tests/recursivo/sec_eval.sh	3	eval	dato	-	$1 -> dato -> eval
+ALERT	./tests/recursivo/sec_eval.sh	3	EVAL	dato	eval	$1 -> dato -> eval

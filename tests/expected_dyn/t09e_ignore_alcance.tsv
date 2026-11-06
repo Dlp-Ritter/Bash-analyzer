@@ -1,0 +1,6 @@
+SOURCE	tests/positivos/t09e_ignore_alcance.sh	4	POSITIONAL	$1	-	$1
+USE	tests/positivos/t09e_ignore_alcance.sh	4	eval	$1	-	$1 -> eval
+IGNORED	tests/positivos/t09e_ignore_alcance.sh	4	EVAL	$1	eval	$1 -> eval
+SOURCE	tests/positivos/t09e_ignore_alcance.sh	5	POSITIONAL	$1	-	$1
+USE	tests/positivos/t09e_ignore_alcance.sh	5	eval	$1	-	$1 -> eval
+ALERT	tests/positivos/t09e_ignore_alcance.sh	5	EVAL	$1	eval	$1 -> eval

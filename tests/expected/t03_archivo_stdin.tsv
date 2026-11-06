@@ -1,0 +1,2 @@
+tests/positivos/t03_archivo_stdin.sh	2	FILE	cat datos.txt	contenido	TAINTED
+tests/positivos/t03_archivo_stdin.sh	3	STDIN	read	linea	TAINTED

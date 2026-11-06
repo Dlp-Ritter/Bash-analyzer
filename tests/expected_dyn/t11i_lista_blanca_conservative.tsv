@@ -1,0 +1,3 @@
+SOURCE	tests/positivos/t11i_lista_blanca_conservative.sh	4	POSITIONAL	$1	-	$1
+SOURCE	tests/positivos/t11i_lista_blanca_conservative.sh	5	POSITIONAL	$1	-	$1
+USE	tests/positivos/t11i_lista_blanca_conservative.sh	5	eval	$1	-	$1 -> eval

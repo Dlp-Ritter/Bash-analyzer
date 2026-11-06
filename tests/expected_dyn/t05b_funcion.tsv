@@ -1,0 +1,6 @@
+SOURCE	tests/positivos/t05b_funcion.sh	8	POSITIONAL	$1	a	$1 -> a
+USE	tests/positivos/t05b_funcion.sh	9	procesar	a	-	$1 -> a -> procesar
+PROP	tests/positivos/t05b_funcion.sh	9	ARGPARAM	a	procesar:$1	$1 -> a -> procesar:$1
+PROP	tests/positivos/t05b_funcion.sh	4	INTERP	$1	x	$1 -> a -> procesar:$1 -> x
+USE	tests/positivos/t05b_funcion.sh	5	ejecutar	x	-	$1 -> a -> procesar:$1 -> x -> ejecutar
+PROP	tests/positivos/t05b_funcion.sh	5	ARGPARAM	x	ejecutar:$1	$1 -> a -> procesar:$1 -> x -> ejecutar:$1

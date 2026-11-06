@@ -1,0 +1,5 @@
+SOURCE	tests/negativos/n03_envoltorios_constantes.sh	10	POSITIONAL	$1	-	$1
+USE	tests/negativos/n03_envoltorios_constantes.sh	10	ssh	$1	-	$1 -> ssh
+PROP	tests/negativos/n03_envoltorios_constantes.sh	10	ARGPARAM	$1	ssh:$1	$1 -> ssh:$1
+SOURCE	tests/negativos/n03_envoltorios_constantes.sh	11	POSITIONAL	$1	-	$1
+USE	tests/negativos/n03_envoltorios_constantes.sh	11	echo	$1	-	$1 -> echo

@@ -1,0 +1,3 @@
+tests/positivos/t02b_entorno_printenv.sh	2	ENV	printenv MI_RUTA	ruta	TAINTED
+tests/positivos/t02b_entorno_printenv.sh	3	ENV	$OTRA_VAR	-	TAINTED
+tests/positivos/t02b_entorno_printenv.sh	4	ENV	$HOME	-	TAINTED

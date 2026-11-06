@@ -1,0 +1,4 @@
+SOURCE	tests/positivos/t10d_ssh.sh	4	POSITIONAL	$1	-	$1
+USE	tests/positivos/t10d_ssh.sh	4	ssh	$1	-	$1 -> ssh
+ALERT	tests/positivos/t10d_ssh.sh	4	SSHCMD	$1	ssh	$1 -> ssh
+PROP	tests/positivos/t10d_ssh.sh	4	ARGPARAM	$1	ssh:$4	$1 -> ssh:$4

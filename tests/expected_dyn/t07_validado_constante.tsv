@@ -1,0 +1,5 @@
+SOURCE	tests/negativos/t07_validado_constante.sh	3	POSITIONAL	$1	entrada	$1 -> entrada
+SOURCE	tests/negativos/t07_validado_constante.sh	3	COMMAND	$(printf '%q' "$1")	entrada	$(printf '%q' "$1") -> entrada
+USE	tests/negativos/t07_validado_constante.sh	3	printf	$1	-	$1 -> printf
+USE	tests/negativos/t07_validado_constante.sh	4	eval	entrada	-	$1 -> entrada -> eval
+ALERT	tests/negativos/t07_validado_constante.sh	4	EVAL/SAN	entrada	eval	$1 -> entrada -> eval

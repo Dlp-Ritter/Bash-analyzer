@@ -1,0 +1,4 @@
+SOURCE	tests/negativos/t07b_validado_conservative.sh	4	POSITIONAL	$1	entrada	$1 -> entrada
+SOURCE	tests/negativos/t07b_validado_conservative.sh	4	COMMAND	$(printf '%q' "$1")	entrada	$(printf '%q' "$1") -> entrada
+USE	tests/negativos/t07b_validado_conservative.sh	4	printf	$1	-	$1 -> printf
+USE	tests/negativos/t07b_validado_conservative.sh	5	eval	entrada	-	$1 -> entrada -> eval

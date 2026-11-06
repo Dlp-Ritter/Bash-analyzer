@@ -1,0 +1,6 @@
+SOURCE	tests/positivos/t08_sin_comillas_subproceso.sh	3	POSITIONAL	$1	archivo	$1 -> archivo
+USE	tests/positivos/t08_sin_comillas_subproceso.sh	4	rm	archivo	-	$1 -> archivo -> rm
+ALERT	tests/positivos/t08_sin_comillas_subproceso.sh	4	UNQUOTED	archivo	rm	$1 -> archivo -> rm
+SOURCE	tests/positivos/t08_sin_comillas_subproceso.sh	5	POSITIONAL	$1	-	$1
+USE	tests/positivos/t08_sin_comillas_subproceso.sh	5	bash	$1	-	$1 -> bash
+ALERT	tests/positivos/t08_sin_comillas_subproceso.sh	5	SUBSHELL	$1	bash	$1 -> bash

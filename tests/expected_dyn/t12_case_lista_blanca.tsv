@@ -1,0 +1,4 @@
+SOURCE	tests/positivos/t12_case_lista_blanca.sh	3	POSITIONAL	$1	-	$1
+SOURCE	tests/positivos/t12_case_lista_blanca.sh	10	POSITIONAL	$1	-	$1
+USE	tests/positivos/t12_case_lista_blanca.sh	10	eval	$1	-	$1 -> eval
+ALERT	tests/positivos/t12_case_lista_blanca.sh	10	EVAL/SAN	$1	eval	$1 -> eval

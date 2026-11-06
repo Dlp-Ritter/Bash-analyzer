@@ -1,0 +1,5 @@
+SOURCE	tests/positivos/t06b_eval_funcion.sh	6	POSITIONAL	$1	-	$1
+USE	tests/positivos/t06b_eval_funcion.sh	6	ejecutar	$1	-	$1 -> ejecutar
+PROP	tests/positivos/t06b_eval_funcion.sh	6	ARGPARAM	$1	ejecutar:$1	$1 -> ejecutar:$1
+USE	tests/positivos/t06b_eval_funcion.sh	4	eval	$1	-	$1 -> ejecutar:$1 -> eval
+ALERT	tests/positivos/t06b_eval_funcion.sh	4	EVAL	$1	eval	$1 -> ejecutar:$1 -> eval

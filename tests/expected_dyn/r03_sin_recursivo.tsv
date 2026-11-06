@@ -1,0 +1,2 @@
+SOURCE	tests/recursivo/r03_sin_recursivo.sh	3	POSITIONAL	$1	-	$1
+USE	tests/recursivo/r03_sin_recursivo.sh	3	source	$1	-	$1 -> source

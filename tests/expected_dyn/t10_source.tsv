@@ -1,0 +1,3 @@
+SOURCE	tests/positivos/t10_source.sh	3	POSITIONAL	$1	-	$1
+USE	tests/positivos/t10_source.sh	3	source	$1	-	$1 -> source
+ALERT	tests/positivos/t10_source.sh	3	SOURCEFILE	$1	source	$1 -> source
